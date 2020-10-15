@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC 
+'-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN' 
+'http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd'>
+<generatorConfiguration>
+    <!--
+    jdbcConnection 配置数据库连接信息；
+    javaModelGenerator 配置javaBean的生成策略；
+    sqlMapgenerator 配置SQL映射文件的生成策略；
+    javaClientGenetator 配置 Mapper 接口的生成策略；
+    table 配置目标数据表；
+    -->
+    <context id="jdm" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="org.mariadb.jdbc.Driver" 
+                        connectionURL="jdbc:mariadb://localhost:3305/jdm_mybatis"
+                        userId="jdm" password="jdmpw">
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="jdm.mybatis.generator.entity" targetProject="./src/main/java"></javaModelGenerator>
+        <sqlMapGenerator targetPackage="mybatis.generator.mapper" targetProject="./src/main/resources"></sqlMapGenerator>
+        <javaClientGenerator 
+            targetPackage="jdm.mybatis.generator.dao" 
+            targetProject="./src/main/java"
+            type="XMLMAPPER">
+        </javaClientGenerator>
+        <table tableName="users" domainObjectName="User"></table>
+        <table tableName="roles" domainObjectName="Role"></table>
+        <table tableName="pets" domainObjectName="Pet"></table>
+        <table tableName="employees" domainObjectName="Employee"></table>
+    </context>
+</generatorConfiguration>

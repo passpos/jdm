@@ -1,0 +1,10 @@
+nb-configuration.xml
+nbactions.xml
+/*/nbproject
+/target/
+/*/target/
+/*/*/target/
+
+
+
+

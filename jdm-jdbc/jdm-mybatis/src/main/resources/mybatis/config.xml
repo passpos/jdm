@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC '-//mybatis.org//DTD Config 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<!--注意：
+    1. 节点顺序。顺序错置也会导致错误；
+    
+-->
+<configuration>
+    <settings>
+        <!-- 自动映射有三种模式，NONE、PARTIAL（默认）、FULL。
+        NONE    不启用自动映射；
+        PARTIAL 只对非嵌套的 resultMap 进行自动映射；
+        FULL    表示对所有的 resultMap 都进行自动映射。-->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <!-- 数据库字段下划线转Bean字段的驼峰命名 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 控制台打印SQL -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!-- 延迟加载的全局开关
+        当开启时，所有关联对象都会延迟加载。 
+        特定关联关系中可通过设置fetchType属性来覆盖该项的开关状态。
+        默认false -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 当开启时，任何方法的调用都会加载该对象的所有属性。
+        否则，每个属性会按需加载。默认false (true in ≤3.4.1) -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+    <!--类型别名-->
+    <typeAliases>
+        <typeAlias type="java.lang.String" alias="String"/>
+        <typeAlias type="java.util.Map" alias="Map"/>
+        <typeAlias type="jdm.mybatis.entity.User" alias="User"/>
+        <typeAlias type="jdm.mybatis.entity.Pet" alias="Pet"/>
+        <typeAlias type="jdm.mybatis.entity.Role" alias="Role"/>
+    </typeAliases>
+    <!--数据库环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置JDBC的事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--POOLED配置JDBC数据源连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="org.mariadb.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mariadb://localhost:3305/jdm_mybatis"></property>
+                <property name="username" value="jdm"></property>
+                <property name="password" value="jdmpw"></property>
+            </dataSource>
+        </environment>
+        <environment id="mysql">
+            <!--配置JDBC的事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--POOLED配置JDBC数据源连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://localhost:3305/jdm_mybatis?useUnicode=true&amp;charcaterEncoding=UTF-8"></property>
+                <property name="username" value="jdm"></property>
+                <property name="password" value="jdmpw"></property>
+            </dataSource>
+        </environment>
+        <environment id="SQLite">
+            <!-- 配置JDBC事务管理 -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 配置连接池,此连接池为mybatis连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="org.sqlite.JDBC"/>
+                <property name="url" value="jdbc:sqlite:./src/main/resources/db/jdm_mybatis.db3"/>
+                <!--<property name="url" value="jdbc:sqlite:D:/mydb.db3"/>-->
+                <property name="username" value=""/>
+                <property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="jdm/mybatis/dao/UserMapper.xml"/>
+        <mapper resource="jdm/mybatis/dao/PetMapper.xml"/>
+        <mapper resource="mybatis/mapper/RoleMapper.xml"/>
+    </mappers>
+</configuration>
