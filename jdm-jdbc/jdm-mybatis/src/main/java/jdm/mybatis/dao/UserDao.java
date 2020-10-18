@@ -12,7 +12,7 @@ import jdm.mybatis.entity.User;
  *
  * @author passpos <paiap@outlook.com>
  */
-public interface UserRepository {
+public interface UserDao {
 
     public int save(User user);
 

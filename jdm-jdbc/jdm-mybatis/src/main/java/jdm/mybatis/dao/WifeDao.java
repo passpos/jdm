@@ -5,13 +5,20 @@
  */
 package jdm.mybatis.dao;
 
-import jdm.mybatis.entity.Role;
+import jdm.mybatis.entity.Wife;
 
 /**
  *
  * @author passpos <paiap@outlook.com>
  */
-public interface RoleRepository {
+public interface WifeDao {
 
-    public Role findUsers(int id);
+    public int save(Wife wife);
+
+    public int update(Wife wife);
+
+    public int delete(Wife wife);
+
+    public int deleteById(int id);
+
 }

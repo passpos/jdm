@@ -11,7 +11,7 @@ import jdm.mybatis.entity.Pet;
  *
  * @author passpos <paiap@outlook.com>
  */
-public interface PetRepository {
+public interface PetDao {
 
     public Pet findById(int id);
 
