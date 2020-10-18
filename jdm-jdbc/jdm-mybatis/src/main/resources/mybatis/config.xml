@@ -70,8 +70,16 @@
         </environment>
     </environments>
     <mappers>
+        <!-- 可以将mapper.xml文件放入源码目录中，下面的目录指的是包路径+文件名
         <mapper resource="jdm/mybatis/dao/UserMapper.xml"/>
         <mapper resource="jdm/mybatis/dao/PetMapper.xml"/>
+        -->
+        <!-- 也可以将mapper.xml文件放入资源目录中，下面的目录指的是资源路径+文件名
+        -->
         <mapper resource="mybatis/mapper/RoleMapper.xml"/>
+        <mapper resource="mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="mybatis/mapper/PetMapper.xml"/>
+        <mapper resource="mybatis/mapper/HusbandMapper.xml"/>
+        <mapper resource="mybatis/mapper/WifeMapper.xml"/>
     </mappers>
 </configuration>

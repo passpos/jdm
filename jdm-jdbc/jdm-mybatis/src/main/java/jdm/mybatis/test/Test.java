@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdm.mybatis.dao.PetRepository;
-import jdm.mybatis.dao.RoleRepository;
-import jdm.mybatis.dao.UserRepository;
 import jdm.mybatis.entity.Pet;
 import jdm.mybatis.entity.Role;
 import jdm.mybatis.entity.User;
@@ -28,6 +25,9 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import jdm.mybatis.dao.RoleDao;
+import jdm.mybatis.dao.PetDao;
+import jdm.mybatis.dao.UserDao;
 
 /**
  *
@@ -36,9 +36,9 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 public class Test {
 
     private static SqlSession sqlSession;
-    private static UserRepository urp;
-    private static PetRepository prp;
-    private static RoleRepository rrp;
+    private static UserDao urp;
+    private static PetDao prp;
+    private static RoleDao rrp;
     
     public static void main(String[] args) {
         // 加载MyBatis配置文件
@@ -72,9 +72,9 @@ public class Test {
     public static void index() {
         // nativeInterface();
 
-        urp = sqlSession.getMapper(UserRepository.class);
-        prp = sqlSession.getMapper(PetRepository.class);
-        rrp = sqlSession.getMapper(RoleRepository.class);
+        urp = sqlSession.getMapper(UserDao.class);
+        prp = sqlSession.getMapper(PetDao.class);
+        rrp = sqlSession.getMapper(RoleDao.class);
 
         // mapProxy();
         associationOperator();

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 'PUBLIC:-//mybatis.org//DTD mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="jdm.mybatis.dao.UserDao">
+    <!--SQL结果集映射-->
+    <resultMap id="userMap" type="User">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName"></result>
+        <result column="age" property="age"></result>
+        <!-- 一对多映射
+        column，指的是结果集中的列名/字段名；
+        property=，指的是Bean中与column对应的属性名；
+        -->
+        <collection property="myPets" ofType="Pet">
+            <id column="pid" property="id"></id>
+            <result column="name" property="petName"></result>
+        </collection>
+        <!--多对多映射
+        这和一对多并没有太大差别；
+        -->
+        <collection property="myRoles" ofType="Role">
+            <id column="rid" property="id"></id>
+            <result column="role_name" property="roleName"></result>
+        </collection>
+    </resultMap>
+
+    <!--SQL动作映射-->
+    <insert id="save" parameterType="User">
+        insert into users(user_name,age) values(#{userName},#{age})
+    </insert>
+    <update id="update" parameterType="User">
+        update users set user_name = #{userName},age = #{age} where id = #{id}
+    </update>
+    <delete id="delete" parameterType="User">
+        delete from users where id = #{id}
+    </delete>
+    <delete id="deleteById"  parameterType="int">
+        delete from users where id = #{id}
+    </delete>
+    <delete id="deleteByAge"  parameterType="int">
+        delete from users where age = #{age}
+    </delete>
+    <select id="findAll" resultType="User">
+        select * from users
+    </select>
+    <select id="findById" parameterType="int" resultType="User">
+        select * from users where id = #{id}
+    </select>
+    <select id="findByIdLazy" parameterType="int" resultType="User">
+        select * from users where id = #{id}
+    </select>
+    <select id="findByName" parameterType="String" resultType="User">
+        select * from users where user_name = #{name}
+    </select>
+    <select id="findByAge" parameterType="int" resultType="User">
+        select * from users where age = #{age}
+    </select>
+    <select id="findByNameAndAge" resultType="User">
+        select * from users where user_name = #{param1} and age = #{param2}
+    </select>
+    <select id="count" resultType="int">
+        select count(id) from users
+    </select>
+    <select id="findPets" parameterType="int" resultMap="userMap">
+        select u.id, u.user_name, p.id pid, p.name
+        from users u, pets p
+        where u.id = #{id}
+        and p.master_id = u.id
+    </select>
+    <select id="findRoles" parameterType="int" resultMap="userMap">
+        SELECT 
+        u.id, u.user_name, u.age,
+        r.id rid, r.role_name
+        FROM users u, roles r, user_role a
+        WHERE u.id = #{id}
+        AND a.user_id = u.id
+        AND a.role_id = r.id;
+    </select>
+</mapper>
+

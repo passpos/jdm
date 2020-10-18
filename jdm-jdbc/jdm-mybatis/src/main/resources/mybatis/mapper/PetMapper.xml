@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE mapper PUBLIC 'PUBLIC:-//mybatis.org//DTD mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace="jdm.mybatis.dao.PetDao">
+    <resultMap id="petMap" type="Pet">
+        <id column="id" property="id"></id>
+        <result column="name" property="petName"></result>
+        <!--延迟加载配置
+        column属性，应对应（第一次查询）结果集中的字段（该字段会作为参数传递到第二次查询中）；
+        select属性，建议使用完全限定类名（当使用别名时，有失败案例）；
+        若为自关联，select要执行的延迟加载方法在当前映射文件中，则可以省去限定，只写方法id；
+        -->
+        <association column="master_id" property="master" javaType="User"
+                     select="UserDao.findByIdLazy">
+        </association>
+        <!--
+        一般配置（不使用延迟加载）
+        多对一关联
+        何时使用“association”，何时使用“collection”？
+        association 总是存在于“一”方/对方（因为返回的是一个对象而不是集合）；
+        -->
+        <association property="master" javaType="User">
+            <id column="uid" property="id"></id>
+            <result column="user_name" property="userName"></result>
+            <!-- sql "as" 结果集映射方式
+            <id column="uid" property="id"></id>
+            <result column="uname" property="userName"></result>
+            -->
+        </association>
+    </resultMap>
+    <!--支持直接访问属性对象成员（要求该成员在属性对象中有getter）-->
+    <insert id="save" parameterType="Pet">
+        INSERT INTO 
+        pets(name, master_id) 
+        VALUES
+        (#{name}, #{master.id})
+    </insert>
+    <select id="findById" parameterType="int" resultMap="petMap">
+        select p.id, p.name, u.id uid, u.user_name 
+        <!--select p.id, p.name, u.id as uid, u.user_name as uname--> 
+        from pets p, users u 
+        where p.id = #{id}
+        and p.master_id = u.id
+    </select>
+    <select id="findByIdLazy" parameterType="int" resultMap="petMap">
+        select * from pets p where p.id = #{id}
+    </select>
+</mapper>
