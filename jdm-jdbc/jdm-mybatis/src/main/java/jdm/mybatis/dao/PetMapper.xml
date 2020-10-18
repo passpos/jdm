@@ -28,7 +28,7 @@ and open the template in the editor.
         <association property="master" javaType="User">
             <id column="uid" property="id"></id>
             <result column="user_name" property="userName"></result>
-            <!-- as 映射方式
+            <!-- sql "as" 结果集映射方式
             <id column="uid" property="id"></id>
             <result column="uname" property="userName"></result>
             -->
