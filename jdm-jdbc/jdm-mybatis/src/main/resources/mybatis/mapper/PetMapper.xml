@@ -34,8 +34,16 @@ and open the template in the editor.
             -->
         </association>
     </resultMap>
-    <!--支持直接访问属性对象成员（要求该成员在属性对象中有getter）-->
-    <insert id="save" parameterType="Pet">
+    <!--
+        支持直接访问属性对象成员（要求该成员在属性对象中有getter）
+        useGeneratedKeys，开启后，将会获取添加操作记录的主键；
+        keyColumn，主键字段名；
+        keyProperty，所在实体中，主键的属性名；
+        设置完成后，执行添加操作，仍然返回受影响的行数。
+        但被添加的实体对象，主键id将会被赋值；
+    -->
+    <insert id="save" parameterType="Pet" useGeneratedKeys="true" 
+            keyColumn="id" keyProperty="id">
         INSERT INTO 
         pets(name, master_id) 
         VALUES
