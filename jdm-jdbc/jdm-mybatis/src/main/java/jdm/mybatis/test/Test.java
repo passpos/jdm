@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdm.mybatis.dao.PetDao;
+import jdm.mybatis.dao.RoleDao;
+import jdm.mybatis.dao.UserDao;
 import jdm.mybatis.entity.Pet;
 import jdm.mybatis.entity.Role;
 import jdm.mybatis.entity.User;
@@ -25,9 +28,6 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import jdm.mybatis.dao.RoleDao;
-import jdm.mybatis.dao.PetDao;
-import jdm.mybatis.dao.UserDao;
 
 /**
  *
@@ -212,7 +212,7 @@ public class Test {
      */
     public static void generator() {
         // 加载配置
-        String genConf = "mybatis/generatorConfig.xml";
+        String genConf = "mybatis/generator.xml";
         File conf = new File(Test.class.getClassLoader().getResource(genConf).getFile());
         
         ArrayList<String> warnings = new ArrayList<>();
