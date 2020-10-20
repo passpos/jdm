@@ -21,4 +21,7 @@ public interface WifeDao {
 
     public int deleteById(int id);
 
+    public Wife findById(int id);
+
+    public Wife findWithHusband(int id);
 }
