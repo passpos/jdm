@@ -6,20 +6,32 @@
         <id column="id" property="id" />
         <result column="user_name" property="userName"></result>
         <result column="age" property="age"></result>
-        <!-- 一对多映射
-        column，指的是结果集中的列名/字段名；
-        property=，指的是Bean中与column对应的属性名；
-        -->
-        <collection property="myPets" ofType="Pet">
-            <id column="pid" property="id"></id>
-            <result column="name" property="petName"></result>
-        </collection>
         <!--多对多映射
         这和一对多并没有太大差别；
         -->
         <collection property="myRoles" ofType="Role">
             <id column="rid" property="id"></id>
             <result column="role_name" property="roleName"></result>
+        </collection>
+    </resultMap>
+    <!-- resultMap支持继承机制
+    1. 优点
+    - 使用继承可以灵活配值结果集映射，优化查询性能；
+    - 能解决延迟加载的循环加载问题；
+    2. 用法。当使用下面片段时，要注销上面对应的collection；
+    - User和Pet的select结果均指向拓展后resultMap；
+    - 而下面集合中的resultMap则指向未拓展的resultMap；
+    -->
+    <resultMap  id="masterMap" type="User" extends="userMap">
+        <!--
+        <collection property="myPets" resultMap="mybatis.mapper.PetMapper.petMap"/>
+        一对多映射
+        column，指的是结果集中的列名/字段名；
+        property=，指的是Bean中与column对应的属性名；
+        -->
+        <collection property="myPets" ofType="Pet">
+            <id column="pid" property="id"></id>
+            <result column="name" property="petName"></result>
         </collection>
     </resultMap>
 
@@ -60,7 +72,7 @@
     <select id="count" resultType="int">
         select count(id) from users
     </select>
-    <select id="findPets" parameterType="int" resultMap="userMap">
+    <select id="findPets" parameterType="int" resultMap="masterMap">
         select u.id, u.user_name, p.id pid, p.name
         from users u, pets p
         where u.id = #{id}
