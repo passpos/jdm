@@ -6,7 +6,29 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>
-        <association column="" property="husband"
-                     select="jdm.mybatis.dao.HusbandDao.findById"/>
     </resultMap>
+    <resultMap id="couplesMap" type="Wife" extends="wifeMap">
+        <!-- 一对一关联（反方）
+        下面两种写法均可以。其中：
+        cloumn：本方id，由于本方不持有外键，所以查询对方时要通过 findByWifeId()；
+        即：通过本方id查对方，所以column的值就是本方id，而不是对方id或对方中的外键；
+        -->
+        <association column="id" property="husband" javaType="Husband"
+                     select="jdm.mybatis.dao.HusbandDao.findByWifeId">
+        </association>
+        <!--
+        <collection column="id" property="husband" ofType="Husband"
+                    select="jdm.mybatis.dao.HusbandDao.findByWifeId">
+        </collection>-->
+    </resultMap>
+    <select id="findById" parameterType="int" resultMap="wifeMap">
+        SELECT *
+        FROM wife
+        WHERE id = #{id}
+    </select>
+    <select id="findWithHusband" parameterType="int" resultMap="couplesMap">
+        SELECT *
+        FROM wife
+        WHERE id = #{id}
+    </select>
 </mapper>
