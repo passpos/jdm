@@ -6,7 +6,19 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>
-        <association column="wife_id" property="wife"
-            javaType="Wife" select="jdm.mybatis.dao.WifeDao.findById"/>
     </resultMap>
+    <resultMap id="couplesMap" type="Husband" extends="husbandMap">
+        <association column="wife_id" property="wife"
+                     javaType="Wife" select="jdm.mybatis.dao.WifeDao.findById"/>
+    </resultMap>
+    <select id="findById" parameterType="int" resultMap="couplesMap">
+        SELECT *
+        FROM husband
+        WHERE id = #{id}
+    </select>
+    <select id="findByWifeId" parameterType="int" resultMap="husbandMap">
+        SELECT *
+        FROM husband
+        WHERE wife_id = #{id}
+    </select>
 </mapper>
