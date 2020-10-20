@@ -48,4 +48,14 @@ public class Wife {
         this.husband = husband;
     }
 
+    @Override
+    public String toString() {
+        return "Wife{\n\t"
+                + "id=" + id
+                + ", \n\tname=" + name
+                + ", \n\tgender=" + gender
+                + ", \n\thusband=" + husband
+                + "\n}";
+    }
+
 }

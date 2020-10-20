@@ -32,6 +32,8 @@
         <typeAlias type="jdm.mybatis.entity.User" alias="User"/>
         <typeAlias type="jdm.mybatis.entity.Pet" alias="Pet"/>
         <typeAlias type="jdm.mybatis.entity.Role" alias="Role"/>
+        <typeAlias type="jdm.mybatis.entity.Husband" alias="Husband"/>
+        <typeAlias type="jdm.mybatis.entity.Wife" alias="Wife"/>
     </typeAliases>
     <!--数据库环境-->
     <environments default="development">

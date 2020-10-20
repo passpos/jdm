@@ -19,15 +19,18 @@
     - 使用继承可以灵活配值结果集映射，优化查询性能；
     - 能解决延迟加载的循环加载问题；
     2. 用法。当使用下面片段时，要注销上面对应的collection；
-    - User和Pet的select结果均指向拓展后resultMap；
-    - 而下面集合中的resultMap则指向未拓展的resultMap；
+    - User和Pet的select标签的结果均指向下面拓展后resultMap；
+    - 而下面集合中的resultMap则指向关联方中，未拓展的resultMap；
     -->
     <resultMap  id="masterMap" type="User" extends="userMap">
         <!--
-        <collection property="myPets" resultMap="mybatis.mapper.PetMapper.petMap"/>
+        <collection column="id" property="myPets" ofType="Pet"
+                    select="jdm.mybatis.dao.PetDao.findById"/>
         一对多映射
-        column，指的是结果集中的列名/字段名；
-        property=，指的是Bean中与column对应的属性名；
+        column，指的是结果集中的列名/字段名。
+        但当查询为（关联中的）反向时，一般应为本方id。
+        此时的查询方法应为findByXXXId()，“XXX”指本方；
+        property，指的是Bean中与column对应的属性名；
         -->
         <collection property="myPets" ofType="Pet">
             <id column="pid" property="id"></id>
