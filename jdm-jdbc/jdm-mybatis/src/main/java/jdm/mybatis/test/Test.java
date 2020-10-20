@@ -16,9 +16,11 @@ import java.util.logging.Logger;
 import jdm.mybatis.dao.PetDao;
 import jdm.mybatis.dao.RoleDao;
 import jdm.mybatis.dao.UserDao;
+import jdm.mybatis.dao.WifeDao;
 import jdm.mybatis.entity.Pet;
 import jdm.mybatis.entity.Role;
 import jdm.mybatis.entity.User;
+import jdm.mybatis.entity.Wife;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -39,7 +41,8 @@ public class Test {
     private static UserDao urp;
     private static PetDao prp;
     private static RoleDao rrp;
-    
+    private static WifeDao wrp;
+
     public static void main(String[] args) {
         // 加载MyBatis配置文件
         InputStream istream = Test.class.getClassLoader().getResourceAsStream("mybatis/config.xml");
@@ -69,13 +72,17 @@ public class Test {
         }
     }
 
+    public static <T> void ol(T arg) {
+        System.out.println(arg);
+    }
+
     public static void index() {
         // nativeInterface();
 
         urp = sqlSession.getMapper(UserDao.class);
         prp = sqlSession.getMapper(PetDao.class);
         rrp = sqlSession.getMapper(RoleDao.class);
-
+        wrp = sqlSession.getMapper(WifeDao.class);
         // mapProxy();
         associationOperator();
         // generator();
@@ -88,14 +95,14 @@ public class Test {
 //        addUser();
         findByAge();
     }
-    
+
     public static void addUser() {
         String statement = "jdm.mybatis.repository.UserMapper.save";
         User user = new User("second", 20);
         sqlSession.insert(statement, user);
         sqlSession.commit();
     }
-    
+
     public static void findByAge() {
         String statement = "jdm.mybatis.repository.UserMapper.findByAge";
         Integer age = 18;
@@ -119,13 +126,13 @@ public class Test {
         findByNameAndAge();
         count();
     }
-    
+
     public static void save() {
         User user = new User("four", 6);
         urp.save(user);
         sqlSession.commit();
     }
-    
+
     public static void update() {
         User user = urp.findById(1);
         if (user != null) {
@@ -134,13 +141,13 @@ public class Test {
             sqlSession.commit();
         }
     }
-    
+
     public static void deleteByAge() {
         int deleteCount = urp.deleteByAge(6);
         sqlSession.commit();
         System.out.println(deleteCount);
     }
-    
+
     public static void findAll() {
         List<User> users = urp.findAll();
         System.out.println(users);
@@ -148,27 +155,27 @@ public class Test {
             System.out.println(user);
         }
     }
-    
+
     public static void findUserById() {
         User user = urp.findById(1);
         System.out.println(user);
     }
-    
+
     public static void finPetById() {
         Pet pet = prp.findById(1);
         System.out.println(pet);
     }
-    
+
     public static void findByName() {
         User user = urp.findByName("second");
         System.out.println(user);
     }
-    
+
     public static void findByNameAndAge() {
         User user = urp.findByNameAndAge("first", 18);
         System.out.println(user);
     }
-    
+
     public static void count() {
         int count = urp.count();
         System.out.println(count);
@@ -181,27 +188,36 @@ public class Test {
      * 把Dao接口的多个方法组合起来，就能轻松灵活的实现这些目标。
      */
     public static void associationOperator() {
-        findPetById();
-        findPets();
-        findRoles();
-        findUsers();
+        findWifeWithHusband();
+//        findPetById();
+//        findPets();
+//        findRoles();
+//        findUsers();
     }
-    
+
+    /**
+     * 一对一
+     */
+    public static void findWifeWithHusband() {
+        Wife wife = wrp.findWithHusband(1);
+        ol(wife);
+    }
+
     public static void findPetById() {
         Pet pet = prp.findById(1);
         System.out.println(pet);
     }
-    
+
     public static void findPets() {
         User user = urp.findPets(4);
         System.out.println(user);
     }
-    
+
     public static void findRoles() {
         User user = urp.findRoles(4);
         System.out.println(user);
     }
-    
+
     public static void findUsers() {
         Role role = rrp.findUsers(2);
         System.out.println(role);
@@ -214,7 +230,7 @@ public class Test {
         // 加载配置
         String genConf = "mybatis/generator.xml";
         File conf = new File(Test.class.getClassLoader().getResource(genConf).getFile());
-        
+
         ArrayList<String> warnings = new ArrayList<>();
         ConfigurationParser cp = new ConfigurationParser(warnings);
 
