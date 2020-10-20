@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD mapper 3.0//EN' 
 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
-<mapper>
-    
+<mapper namespace="jdm.mybatis.dao.HusbandDao">
+    <resultMap id="husbandMap" type="Husband">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <association column="wife_id" property="wife"
+            javaType="Wife" select="jdm.mybatis.dao.WifeDao.findById"/>
+    </resultMap>
 </mapper>
