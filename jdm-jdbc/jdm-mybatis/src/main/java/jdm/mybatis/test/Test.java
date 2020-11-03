@@ -84,8 +84,9 @@ public class Test {
         rrp = sqlSession.getMapper(RoleDao.class);
         wrp = sqlSession.getMapper(WifeDao.class);
         // mapProxy();
-        associationOperator();
+        // associationOperator();
         // generator();
+        // dynamicSql();
     }
 
     /**
@@ -267,4 +268,21 @@ public class Test {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**
+     * 动态SQL
+     */
+    public static void dynamicSql() {
+        ArrayList<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
+        ids.add(3L);
+        ids.add(4L);
+        ids.add(9L);
+        List<User> users = urp.findSomUsersById(ids);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
 }

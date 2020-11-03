@@ -32,6 +32,8 @@ public interface UserDao {
 
     public User findByIdLazy(int id);
 
+    public User findByUser(User user);
+
     public User findByName(String userName);
 
     public User findByNameAndAge(String userName, int age);
@@ -39,4 +41,6 @@ public interface UserDao {
     public User findRoles(int id);
 
     public User findPets(int id);
+
+    public List<User> findSomUsersById(List<Long> ids);
 }

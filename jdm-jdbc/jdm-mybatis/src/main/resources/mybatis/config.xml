@@ -28,7 +28,9 @@
     <!--类型别名-->
     <typeAliases>
         <typeAlias type="java.lang.String" alias="String"/>
+        <typeAlias type="java.util.List" alias="List"/>
         <typeAlias type="java.util.Map" alias="Map"/>
+        <typeAlias type="java.util.Set" alias="Set"/>
         <typeAlias type="jdm.mybatis.entity.User" alias="User"/>
         <typeAlias type="jdm.mybatis.entity.Pet" alias="Pet"/>
         <typeAlias type="jdm.mybatis.entity.Role" alias="Role"/>
