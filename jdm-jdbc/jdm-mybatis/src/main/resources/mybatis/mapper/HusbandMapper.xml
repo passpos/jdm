@@ -18,7 +18,7 @@
                 <when test="id != 0">
                     id = #{id}
                 </when>
-                <when test="user_name != null">
+                <when test="userName != null">
                     AND user_name = #{userName}
                 </when>
                 <when test="age != 0">
