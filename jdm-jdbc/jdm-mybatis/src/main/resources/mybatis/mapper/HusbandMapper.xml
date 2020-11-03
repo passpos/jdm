@@ -11,6 +11,22 @@
         <association column="wife_id" property="wife"
                      javaType="Wife" select="jdm.mybatis.dao.WifeDao.findById"/>
     </resultMap>
+    <select id="findByHusband" parameterType="Husband" resultMap="husbandMap">
+        SELECT * FROM husband
+        <where>
+            <choose>
+                <when test="id != 0">
+                    id = #{id}
+                </when>
+                <when test="user_name != null">
+                    AND user_name = #{userName}
+                </when>
+                <when test="age != 0">
+                    AND age = #{age}
+                </when>
+            </choose>
+        </where>
+    </select>
     <select id="findById" parameterType="int" resultMap="couplesMap">
         SELECT *
         FROM husband
