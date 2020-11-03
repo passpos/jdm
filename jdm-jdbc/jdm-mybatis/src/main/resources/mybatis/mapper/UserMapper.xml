@@ -43,7 +43,16 @@
         insert into users(user_name,age) values(#{userName},#{age})
     </insert>
     <update id="update" parameterType="User">
-        update users set user_name = #{userName},age = #{age} where id = #{id}
+        UPDATE users
+        <set>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="age != 0">
+                age = #{age}
+            </if>
+        </set>
+        WHERE id = #{id}
     </update>
     <delete id="delete" parameterType="User">
         delete from users where id = #{id}
@@ -62,6 +71,20 @@
     </select>
     <select id="findByIdLazy" parameterType="int" resultType="User">
         select * from users where id = #{id}
+    </select>
+    <select id="findByUser" parameterType="User" resultType="User">
+        SELECT * FROM users 
+        <where>
+            <if test="id != 0">
+                id = #{id}
+            </if>
+            <if test="user_name != null">
+                AND user_name = #{userName}
+            </if>
+            <if test="age != 0">
+                AND age = #{age}
+            </if>
+        </where>
     </select>
     <select id="findByName" parameterType="String" resultType="User">
         select * from users where user_name = #{name}
