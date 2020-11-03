@@ -113,5 +113,16 @@
         AND a.user_id = u.id
         AND a.role_id = r.id;
     </select>
+    <select id="findSomUsersById" parameterType="List" resultMap="userMap">
+        <!--
+        SELECT * FROM users WHERE id = 1 OR id = 2 OR id = 3 OR id = 4
+        SELECT * FROM users WHERE id IN (1, 2, 3, 4)-->
+        SELECT * FROM users
+        <where>
+            <foreach collection="ids" open="id IN (" close=")" separator="," item="id">
+                #{id}
+            </foreach>
+        </where>
+    </select>
 </mapper>
 
