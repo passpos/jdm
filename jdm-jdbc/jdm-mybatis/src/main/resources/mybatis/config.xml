@@ -37,6 +37,13 @@
         <typeAlias type="jdm.mybatis.entity.Husband" alias="Husband"/>
         <typeAlias type="jdm.mybatis.entity.Wife" alias="Wife"/>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+            <property name="helperDialect" value="mariadb"/>
+            <!--<property name="helperDialect" value="sqlite"/>-->
+        </plugin>
+    </plugins>
     <!--数据库环境-->
     <environments default="development">
         <environment id="development">
