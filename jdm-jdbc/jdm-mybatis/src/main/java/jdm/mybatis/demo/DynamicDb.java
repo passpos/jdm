@@ -21,7 +21,7 @@ public class DynamicDb {
 
     private SqlSessionFactory ssf;
 
-    public void method() throws IOException {
+    public void buildSSF() throws IOException {
         String resource = "mybatis/config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
 
@@ -34,6 +34,7 @@ public class DynamicDb {
         properties.setProperty("jdbc.username", "root");
         properties.setProperty("jdbc.password", "root");
 
+        // 这里是最关键的一步
         ssf = new SqlSessionFactoryBuilder().build(inputStream, properties);
 
         SqlSession session = ssf.openSession();
