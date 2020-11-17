@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import jdm.utils.demo.AbstractDemo;
-import jdm.samples.stums.Student;
+import utils.entity.demo.sample.Student;
 
 /**
  *

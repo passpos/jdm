@@ -18,7 +18,7 @@ package jdm.base.util.function;
 
 import java.util.function.Supplier;
 import jdm.utils.demo.AbstractDemo;
-import jdm.samples.stums.Student;
+import jdm.utils.entity.Student;
 
 /**
  *
