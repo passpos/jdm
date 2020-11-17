@@ -18,7 +18,7 @@ package jdm.base.util;
 
 import java.util.Comparator;
 import java.util.TreeSet;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 import utils.entity.demo.sample.Teacher;
 
 /**

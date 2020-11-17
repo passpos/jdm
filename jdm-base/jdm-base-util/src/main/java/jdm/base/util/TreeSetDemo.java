@@ -17,7 +17,7 @@
 package jdm.base.util;
 
 import java.util.TreeSet;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

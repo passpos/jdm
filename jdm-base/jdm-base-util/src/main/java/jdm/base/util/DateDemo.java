@@ -16,7 +16,7 @@
  */
 package jdm.base.util;
 
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

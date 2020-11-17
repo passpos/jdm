@@ -17,7 +17,7 @@
 package jdm.base.util;
 
 import java.util.LinkedList;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

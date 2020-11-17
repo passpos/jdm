@@ -17,8 +17,8 @@
 package jdm.base.util.function;
 
 import java.util.function.Consumer;
-import jdm.utils.demo.AbstractDemo;
-import jdm.utils.entity.Student;
+import jdm.core.AbstractDemo;
+import jdm.core.entity.Student;
 
 /**
  *

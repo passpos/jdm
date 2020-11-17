@@ -17,8 +17,8 @@
 package jdm.base.util;
 
 import java.util.HashSet;
-import jdm.utils.demo.AbstractDemo;
-import jdm.utils.entity.Student;
+import jdm.core.AbstractDemo;
+import jdm.core.entity.Student;
 
 /**
  *
