@@ -7,6 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>jdm-base</artifactId>
+    <name>jdm-base</name>
     <packaging>pom</packaging>
     <modules>
         <module>jdm-base-lang</module>
@@ -15,7 +16,6 @@
         <module>jdm-base-text</module>
         <module>jdm-base-util</module>
     </modules>
-    <name>jdm-base</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
