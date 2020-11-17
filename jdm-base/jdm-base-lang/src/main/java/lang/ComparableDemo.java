@@ -17,7 +17,7 @@
 package lang;
 
 import java.util.TreeSet;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 import utils.entity.demo.sample.Teacher;
 
 /**

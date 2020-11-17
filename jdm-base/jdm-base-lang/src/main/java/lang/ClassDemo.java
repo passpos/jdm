@@ -20,7 +20,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 import utils.entity.demo.sample.Person;
 
 /**

@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  * 注意URL与File的区别。

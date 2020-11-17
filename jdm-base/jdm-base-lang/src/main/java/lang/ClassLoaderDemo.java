@@ -16,7 +16,7 @@
  */
 package lang;
 
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

@@ -19,7 +19,7 @@ package jdm.base.io;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

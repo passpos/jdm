@@ -6,13 +6,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>jdm-common</module>
         <module>jdm-desktop</module>
         <module>jdm-base</module>
         <module>jdm-jdbc</module>
-        <module>jdm-samples</module>
-        <module>jdm-utils</module>
         <module>jdm-libs</module>
+        <module>jdm-common</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -19,7 +19,7 @@ package jdm.base.net.samples.tcp;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

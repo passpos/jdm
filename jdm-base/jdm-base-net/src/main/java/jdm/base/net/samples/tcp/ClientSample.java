@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *

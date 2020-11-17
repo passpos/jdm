@@ -22,7 +22,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 
 /**

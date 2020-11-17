@@ -19,7 +19,7 @@ package jdm.base.text;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import jdm.utils.demo.AbstractDemo;
+import jdm.core.AbstractDemo;
 
 /**
  *
