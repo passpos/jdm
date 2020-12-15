@@ -20,7 +20,7 @@
 
         <!-- MariaDB -->
         <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3305/jdm_hibernate</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3308/jdm_hibernate</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</property>
 
         <!-- 数据库认证 -->
