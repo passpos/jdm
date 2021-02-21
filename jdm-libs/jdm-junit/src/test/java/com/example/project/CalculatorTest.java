@@ -17,11 +17,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class CalculatorTests {
+/**
+ * 测试类必须以Test结尾；
+ * 类中需要执行测试的方法，必须以test开头，且必须是 public 的；
+ * @author passpos <paiap@outlook.com>
+ */
+public class CalculatorTest {
 
 	@Test
 	@DisplayName("1 + 1 = 2")
-	void addsTwoNumbers() {
+    public void testAddsTwoNumbers() {
 		Calculator calculator = new Calculator();
 		assertEquals(2, calculator.add(1, 1), "1 + 1 should equal 2");
 	}
@@ -33,7 +38,7 @@ class CalculatorTests {
 			"49,  51, 100",
 			"1,  100, 101"
 	})
-	void add(int first, int second, int expectedResult) {
+    public void testAdd(int first, int second, int expectedResult) {
 		Calculator calculator = new Calculator();
 		assertEquals(expectedResult, calculator.add(first, second),
 				() -> first + " + " + second + " should equal " + expectedResult);
