@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
@@ -42,7 +43,7 @@ public class ESTest {
     }
 
     @Test
-    public void createIndex() throws IOException {
+    public void testCreateIndex() throws IOException {
         if (testExistIndex()) {
             System.out.println("createIndex() - 已经存在索引：" + index);
             return;
@@ -119,7 +120,6 @@ public class ESTest {
         System.out.println("testDelete() - " + delete.isAcknowledged());
     }
 
-    @Test
     public void testCreateDoc() throws JsonProcessingException, IOException {
         // 1. 准备一个json数据
         Person person = new Person(3, "童柏雄", 39, new Date());
@@ -136,4 +136,16 @@ public class ESTest {
         // 4. 输出结果
         System.out.println("testCreateDoc() - " + iResp.getResult().toString());;
     }
+
+    @Test
+    public void testUpdateDoc() {
+        // 1. 创建一个Map，指定需要修改的内容
+        HashMap<Object, Object> doc = new HashMap<>();
+
+
+        // 2. 创建 request对象，封装数据
+        // 3. 通过 client 执行
+        // 4. 输出结果
+    }
+
 }
