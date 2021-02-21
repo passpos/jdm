@@ -28,6 +28,10 @@ public class ESTest {
         System.out.println("testConnect() - 连接成功");
     }
 
+    /**
+     * 判断索引是否存在
+     * @throws IOException
+     */
     @Test
     public void testExist() throws IOException {
         // 1. 准备request对象
@@ -40,6 +44,10 @@ public class ESTest {
         System.out.println("testExist() - " + exists);
     }
 
+    /**
+     * 删除索引
+     * @throws IOException
+     */
     @Test
     public void testDelete() throws IOException {
         // 1. 准备request对象
