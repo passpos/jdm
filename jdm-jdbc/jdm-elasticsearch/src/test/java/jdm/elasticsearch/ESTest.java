@@ -14,6 +14,8 @@ import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -33,7 +35,6 @@ public class ESTest {
 
     public RestHighLevelClient client = ESClient.getClient();
     public String index = "person";
-
     public ObjectMapper mapper = new ObjectMapper();
 
     @Test
@@ -138,14 +139,20 @@ public class ESTest {
     }
 
     @Test
-    public void testUpdateDoc() {
+    public void testUpdateDoc() throws IOException {
         // 1. 创建一个Map，指定需要修改的内容
         HashMap<Object, Object> doc = new HashMap<>();
-
+        doc.put("age", "47");
+        String docId = "1";
 
         // 2. 创建 request对象，封装数据
+        UpdateRequest uReq = new UpdateRequest(index, docId);
+
         // 3. 通过 client 执行
+        UpdateResponse update = client.update(uReq, RequestOptions.DEFAULT);
+
         // 4. 输出结果
+        System.out.println("testUpdateDoc() - " + update.getResult().toString());
     }
 
 }
