@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
@@ -90,7 +92,7 @@ public class ESTest {
      */
     @Test
     public boolean testExistIndex() throws IOException {
-        // 1. 准备request对象
+        // 1. 准备 request 对象
         GetIndexRequest iRequest = new GetIndexRequest(index);
 
         // 2. 通过client去操作
@@ -111,7 +113,8 @@ public class ESTest {
             System.out.println("testDelete() - 不应删除还有用的索引");
             return;
         }
-        // 1. 准备request对象
+
+        // 1. 准备 request 对象
         DeleteIndexRequest diRequest = new DeleteIndexRequest("123");
 
         // 2. 通过client去操作
@@ -126,7 +129,7 @@ public class ESTest {
         Person person = new Person(3, "童柏雄", 39, new Date());
         String json = mapper.writeValueAsString(person);
 
-        // 2. 准备request对象
+        // 2. 准备 request 对象
         IndexRequest iRequest = new IndexRequest(index);
         iRequest.id(String.valueOf(person.getId()));
         iRequest.source(json, XContentType.JSON);
@@ -141,18 +144,31 @@ public class ESTest {
     @Test
     public void testUpdateDoc() throws IOException {
         // 1. 创建一个Map，指定需要修改的内容
-        HashMap<Object, Object> doc = new HashMap<>();
+        HashMap<String, Object> doc = new HashMap<>();
         doc.put("age", "47");
         String docId = "1";
 
-        // 2. 创建 request对象，封装数据
+        // 2. 创建 request 对象，封装数据
         UpdateRequest uReq = new UpdateRequest(index, docId);
+        uReq.doc(doc);
 
         // 3. 通过 client 执行
         UpdateResponse update = client.update(uReq, RequestOptions.DEFAULT);
 
         // 4. 输出结果
         System.out.println("testUpdateDoc() - " + update.getResult().toString());
+    }
+
+    @Test
+    public void testDeleteDoc() throws IOException {
+        // 1. 创建 request 对象
+        DeleteRequest dReq = new DeleteRequest(index, "3");
+
+        // 2. 通过 client 执行
+        DeleteResponse delete = client.delete(dReq, RequestOptions.DEFAULT);
+
+        // 3. 输出结果
+        System.out.println("testDeleteDoc() - " + delete.getResult().toString());
     }
 
 }
