@@ -5,8 +5,13 @@ package jdm.elasticsearch;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.Date;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -15,6 +20,7 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +33,8 @@ public class ESTest {
     public RestHighLevelClient client = ESClient.getClient();
     public String index = "person";
 
+    public ObjectMapper mapper = new ObjectMapper();
+
     @Test
     public void testConnect() {
         RestHighLevelClient client = ESClient.getClient();
@@ -35,7 +43,7 @@ public class ESTest {
 
     @Test
     public void createIndex() throws IOException {
-        if (testExist()) {
+        if (testExistIndex()) {
             System.out.println("createIndex() - 已经存在索引：" + index);
             return;
         }
@@ -79,7 +87,7 @@ public class ESTest {
      * @throws IOException
      */
     @Test
-    public boolean testExist() throws IOException {
+    public boolean testExistIndex() throws IOException {
         // 1. 准备request对象
         GetIndexRequest iRequest = new GetIndexRequest(index);
 
@@ -96,9 +104,13 @@ public class ESTest {
      * @throws IOException
      */
     @Test
-    public void testDelete() throws IOException {
+    public void testDeleteIndex() throws IOException {
+        if (testExistIndex()) {
+            System.out.println("testDelete() - 不应删除还有用的索引");
+            return;
+        }
         // 1. 准备request对象
-        DeleteIndexRequest diRequest = new DeleteIndexRequest(index);
+        DeleteIndexRequest diRequest = new DeleteIndexRequest("123");
 
         // 2. 通过client去操作
         AcknowledgedResponse delete = client.indices().delete(diRequest, RequestOptions.DEFAULT);
@@ -108,11 +120,20 @@ public class ESTest {
     }
 
     @Test
-    public void testCreateDoc() {
+    public void testCreateDoc() throws JsonProcessingException, IOException {
         // 1. 准备一个json数据
+        Person person = new Person(3, "童柏雄", 39, new Date());
+        String json = mapper.writeValueAsString(person);
 
         // 2. 准备request对象
+        IndexRequest iRequest = new IndexRequest(index);
+        iRequest.id(String.valueOf(person.getId()));
+        iRequest.source(json, XContentType.JSON);
+
         // 3. 通过client去操作
+        IndexResponse iResp = client.index(iRequest, RequestOptions.DEFAULT);
+
         // 4. 输出结果
+        System.out.println("testCreateDoc() - " + iResp.getResult().toString());;
     }
 }
