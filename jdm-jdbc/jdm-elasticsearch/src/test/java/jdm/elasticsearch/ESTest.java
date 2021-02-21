@@ -6,6 +6,8 @@ package jdm.elasticsearch;
  * and open the template in the editor.
  */
 import java.io.IOException;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.GetIndexRequest;
@@ -18,7 +20,7 @@ import org.junit.jupiter.api.Test;
 public class ESTest {
 
     public RestHighLevelClient client = ESClient.getClient();
-    public String index = "man";
+    public String index = "person";
 
     @Test
     public void testConnect() {
@@ -36,5 +38,17 @@ public class ESTest {
 
         // 3. 输出
         System.out.println("testExist() - " + exists);
+    }
+
+    @Test
+    public void testDelete() throws IOException {
+        // 1. 准备request对象
+        DeleteIndexRequest diRequest = new DeleteIndexRequest(index);
+
+        // 2. 通过client去操作
+        AcknowledgedResponse delete = client.indices().delete(diRequest, RequestOptions.DEFAULT);
+
+        // 3. 输出
+        System.out.println("testDelete() - " + delete.isAcknowledged());
     }
 }
