@@ -34,7 +34,6 @@ public class BufferedOutputStreamDemo extends AbstractDemo {
     @Override
     public void index() {
         setFos();
-
         baseDemo();
     }
 
