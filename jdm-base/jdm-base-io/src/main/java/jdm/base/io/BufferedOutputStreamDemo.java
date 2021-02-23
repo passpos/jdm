@@ -52,6 +52,7 @@ public class BufferedOutputStreamDemo extends AbstractDemo {
         try {
             bos.write("BufferedOutputStream：hello".getBytes());
             bos.close();
+            fos.close();
         } catch (IOException ex) {
             ol(ex.getMessage());
         }
