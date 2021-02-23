@@ -17,8 +17,8 @@
 package jdm.base.io;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import jdm.core.AbstractDemo;
 
@@ -41,11 +41,11 @@ public class FileOutputStreamDemo extends AbstractDemo {
      * 通过File对象创建文件输出流
      */
     public void create01() {
-        FileOutputStream fis = null;
+        FileOutputStream fos = null;
         String path = "src\\main\\java\\img\\68.txt";
         File file = new File(path);
         try {
-            fis = new FileOutputStream(file);
+            fos = new FileOutputStream(file);
         } catch (FileNotFoundException ex) {
             ol(ex.getMessage());
         }
@@ -55,42 +55,42 @@ public class FileOutputStreamDemo extends AbstractDemo {
      * 通过字符串创建文件输出流
      */
     public void create02() {
-        FileOutputStream fis = null;
+        FileOutputStream fos = null;
         String path = "src\\main\\java\\img\\68.txt";
         byte[] bytes = {102, 103, 104, 105, 106, 107, 108, 109, 110};
         String str = "今天天气不错！";
         byte[] len = str.getBytes();
         try {
-            fis = new FileOutputStream(path, true);
+            fos = new FileOutputStream(path, true);
         } catch (FileNotFoundException ex) {
             ol(ex.getMessage());
         }
-        if (fis == null) {
+        if (fos == null) {
             return;
         }
         try {
             // 换行＿
-            fis.write("\n".getBytes());
-            fis.write(System.getProperty("line.separator").getBytes());
+            fos.write("\n".getBytes());
+            fos.write(System.getProperty("line.separator").getBytes());
 
-            fis.write(100);
-            fis.write(System.getProperty("line.separator").getBytes());
+            fos.write(100);
+            fos.write(System.getProperty("line.separator").getBytes());
 
-            fis.write(101);
-            fis.write(System.getProperty("line.separator").getBytes());
+            fos.write(101);
+            fos.write(System.getProperty("line.separator").getBytes());
 
-            fis.write(bytes);
-            fis.write(System.getProperty("line.separator").getBytes());
+            fos.write(bytes);
+            fos.write(System.getProperty("line.separator").getBytes());
 
-            fis.write(len);
-            fis.write(System.getProperty("line.separator").getBytes());
+            fos.write(len);
+            fos.write(System.getProperty("line.separator").getBytes());
 
-            fis.write(len, 2, 4);
+            fos.write(len, 2, 4);
         } catch (IOException ex) {
             ol(ex.getMessage());
         } finally {
             try {
-                fis.close();
+                fos.close();
             } catch (IOException ex) {
                 ol(ex.getMessage());
             }
