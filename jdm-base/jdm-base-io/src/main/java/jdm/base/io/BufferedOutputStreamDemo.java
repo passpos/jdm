@@ -40,6 +40,10 @@ public class BufferedOutputStreamDemo extends AbstractDemo {
     public void setFos() {
         String path = "src\\main\\java\\img\\68.txt";
         File file = new File(path);
+
+        // 创建父目录，否则报错；
+        file.mkdirs();
+
         try {
             fos = new FileOutputStream(file);
         } catch (FileNotFoundException ex) {
