@@ -57,9 +57,11 @@ public class FileOutputStreamDemo extends AbstractDemo {
     public void create02() {
         FileOutputStream fos = null;
         String path = "src\\main\\java\\img\\68.txt";
+
         byte[] bytes = {102, 103, 104, 105, 106, 107, 108, 109, 110};
         String str = "今天天气不错！";
         byte[] len = str.getBytes();
+
         try {
             fos = new FileOutputStream(path, true);
         } catch (FileNotFoundException ex) {
