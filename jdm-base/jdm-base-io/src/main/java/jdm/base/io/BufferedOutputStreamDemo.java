@@ -31,6 +31,13 @@ public class BufferedOutputStreamDemo extends AbstractDemo {
 
     private FileOutputStream fos = null;
 
+    @Override
+    public void index() {
+        setFos();
+
+        baseDemo();
+    }
+
     public void setFos() {
         String path = "src\\main\\java\\img\\68.txt";
         File file = new File(path);
@@ -39,13 +46,6 @@ public class BufferedOutputStreamDemo extends AbstractDemo {
         } catch (FileNotFoundException ex) {
             ol(ex.getMessage());
         }
-    }
-
-    @Override
-    public void index() {
-        setFos();
-
-        baseDemo();
     }
 
     public void baseDemo() {
