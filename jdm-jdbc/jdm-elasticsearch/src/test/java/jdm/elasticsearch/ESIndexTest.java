@@ -48,7 +48,7 @@ public class ESIndexTest {
                 .put("number_of_shards", 3)
                 .put("number_of_replicas", 1);
 
-        // 2. 映射数据结构
+        // 2. 映射数据结构的mappings
         mappings.startObject().startObject("properties")
                 .startObject("name")
                 .field("type", "text")
@@ -68,7 +68,6 @@ public class ESIndexTest {
 
         // 4. 通过client对象，去连接ES并执行创建索引
         CreateIndexResponse resp;
-
         resp = client.indices().create(ciRequest, RequestOptions.DEFAULT);
 
         // 5. 输出
