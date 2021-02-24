@@ -39,14 +39,16 @@ public class ESIndexTest {
             System.out.println("createIndex() - 已经存在索引：" + index);
             return;
         }
+
+        // Json格式转换
+        XContentBuilder mappings = JsonXContent.contentBuilder();
+
         // 1. 准备关于索引的settings
         Settings.Builder settings = Settings.builder()
                 .put("number_of_shards", 3)
                 .put("number_of_replicas", 1);
 
         // 2. 映射数据结构
-        XContentBuilder mappings = JsonXContent.contentBuilder();
-
         mappings.startObject().startObject("properties")
                 .startObject("name")
                 .field("type", "text")
