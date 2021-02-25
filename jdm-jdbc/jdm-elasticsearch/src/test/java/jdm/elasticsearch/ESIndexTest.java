@@ -50,15 +50,11 @@ public class ESIndexTest {
 
         // 2. 映射数据结构的mappings
         mappings.startObject().startObject("properties")
-                .startObject("name")
-                .field("type", "text")
+                .startObject("name").field("type", "text")
                 .endObject()
-                .startObject("age")
-                .field("type", "integer")
+                .startObject("age").field("type", "integer")
                 .endObject()
-                .startObject("birthday")
-                .field("type", "date")
-                .field("format", "yyyy-MM-dd")
+                .startObject("birthday").field("type", "date").field("format", "yyyy-MM-dd")
                 .endObject()
                 .endObject().endObject();
 
