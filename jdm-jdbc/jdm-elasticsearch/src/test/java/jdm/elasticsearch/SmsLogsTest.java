@@ -556,7 +556,7 @@ public class SmsLogsTest {
             SearchHit[] hits = nextResp.getHits().getHits();
 
             // 8. 判断是否查询到了数据，输出
-            if (nextResp.getHits().getHits() != null && nextResp.getHits().getHits().length > 0) {
+            if (hits != null && nextResp.getHits().getHits().length > 0) {
                 System.out.println("-----------------next----------------");
                 System.out.println(resp1.getHits().getHits().length);
             } else {
