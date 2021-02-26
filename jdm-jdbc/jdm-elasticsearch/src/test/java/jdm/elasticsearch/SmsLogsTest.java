@@ -558,7 +558,7 @@ public class SmsLogsTest {
             // 8. 判断是否查询到了数据，输出
             if (hits != null && nextResp.getHits().getHits().length > 0) {
                 System.out.println("-----------------next----------------");
-                System.out.println(resp1.getHits().getHits().length);
+                System.out.println(hits.length);
             } else {
                 // 9. 判断没有查询到数据就——退出循环
                 System.out.println("-----------------over----------------");
