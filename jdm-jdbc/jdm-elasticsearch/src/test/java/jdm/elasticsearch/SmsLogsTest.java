@@ -29,12 +29,15 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
+import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,7 +67,6 @@ public class SmsLogsTest {
     public SmsLogs s12;
 
     @Test
-    @BeforeAll
     @DisplayName("AddIndex")
     public void testAddIndex() throws IOException {
         if (exist(index)) {
@@ -572,5 +574,83 @@ public class SmsLogsTest {
 
         // 12. 输出结果
         System.out.println("删除scroll：" + csResp.isSucceeded());
+    }
+
+    @Disabled
+    @DisplayName("DeleteByQuery")
+    public void testDeleteByQuery() throws IOException {
+        System.out.println("--------------------------------------------");
+        System.out.println("testDeleteByQuery()");
+
+        // 1. 创建 Request 对象
+        DeleteByQueryRequest req = new DeleteByQueryRequest(index);
+
+        // 2. 指定检索条件（和SearchRequest指定的方式不一样）
+        req.setQuery(QueryBuilders.rangeQuery("fee").lt(4));
+
+        // 3. 执行查询与删除操作
+        BulkByScrollResponse resp = client.deleteByQuery(req, RequestOptions.DEFAULT);
+
+        // 4. 输出结果
+        System.out.println(resp.toString());
+    }
+
+    @Test
+    @DisplayName("BoolQuery")
+    public void testBoolQuery() throws IOException {
+        System.out.println("--------------------------------------------");
+        System.out.println("testBoolQuery()");
+
+        // 1. 创建 Request 对象
+        SearchRequest req = new SearchRequest(index);
+
+        // 2. 指定检索条件
+        SearchSourceBuilder ssb = new SearchSourceBuilder();
+        BoolQueryBuilder bqb = QueryBuilders.boolQuery();
+
+        // 查询省份为河北省或北京市；
+        bqb.should(QueryBuilders.termQuery("province", "河北省"));
+        bqb.should(QueryBuilders.termQuery("province", "北京市"));
+
+        // 运营商不是联通；
+        bqb.mustNot(QueryBuilders.termQuery("operatorId", 2));
+
+        bqb.must(QueryBuilders.matchQuery("smsContent", "中国"));
+        bqb.must(QueryBuilders.matchQuery("smsContent", "排行榜"));
+
+        ssb.query(bqb);
+        req.source(ssb);
+
+        // 3. 执行查询与删除操作
+        SearchResponse resp = client.search(req, RequestOptions.DEFAULT);
+
+        // 4. 输出结果
+        System.out.println(resp.getHits().getHits().length);
+    }
+
+    @Test
+    @DisplayName("BoostingQuery")
+    public void testBoostingQuery() throws IOException {
+        System.out.println("--------------------------------------------");
+        System.out.println("testBoostingQuery()");
+
+        // 1. 创建 Request 对象
+        SearchRequest req = new SearchRequest(index);
+
+        // 2. 指定检索条件
+        SearchSourceBuilder ssb = new SearchSourceBuilder();
+        BoostingQueryBuilder bqb = QueryBuilders.boostingQuery(
+                QueryBuilders.matchQuery("smsContent", "增长"),
+                QueryBuilders.matchQuery("smsContent", "下降"))
+                .negativeBoost(0.5f);
+
+        ssb.query(bqb);
+        req.source(ssb);
+
+        // 3. 执行查询与删除操作
+        SearchResponse resp = client.search(req, RequestOptions.DEFAULT);
+
+        // 4. 输出结果
+        System.out.println(resp.getHits().getHits().length);
     }
 }
