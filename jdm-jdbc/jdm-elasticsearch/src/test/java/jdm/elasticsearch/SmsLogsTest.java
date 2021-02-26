@@ -37,6 +37,7 @@ import org.elasticsearch.index.reindex.BulkByScrollResponse;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -652,5 +653,60 @@ public class SmsLogsTest {
 
         // 4. 输出结果
         System.out.println(resp.getHits().getHits().length);
+    }
+
+    @Test
+    @DisplayName("Filter")
+    public void testFilter() throws IOException {
+        System.out.println("--------------------------------------------");
+        System.out.println("testFilter()");
+
+        // 1. 创建 Request 对象
+        SearchRequest req = new SearchRequest(index);
+
+        // 2. 指定检索条件
+        SearchSourceBuilder ssb = new SearchSourceBuilder();
+        BoolQueryBuilder bqb = QueryBuilders.boolQuery();
+        bqb.filter(QueryBuilders.termQuery("corpName", "贵州茅台"));
+        bqb.filter(QueryBuilders.rangeQuery("fee").lte(100));
+
+        ssb.query(bqb);
+        req.source(ssb);
+
+        // 3. 执行查询与删除操作
+        SearchResponse resp = client.search(req, RequestOptions.DEFAULT);
+
+        // 4. 输出结果
+        System.out.println(resp.getHits().getHits().length);
+    }
+
+    @Test
+    @DisplayName("HighLightQuery")
+    public void testHighLightQuery() throws IOException {
+        System.out.println("--------------------------------------------");
+        System.out.println("testHighLightQuery()");
+
+        // 1. 创建 Request 对象
+        SearchRequest req = new SearchRequest(index);
+
+        // 2. 指定检索条件
+        SearchSourceBuilder ssb = new SearchSourceBuilder();
+        ssb.query(QueryBuilders.matchQuery("smsContent", "中金公司"));
+        HighlightBuilder hb = new HighlightBuilder();
+        hb.field("smsContent", 10)
+                .preTags("<font color='red'>")
+                .postTags("</font>");
+
+        ssb.highlighter(hb);
+        req.source(ssb);
+
+        // 3. 执行查询与删除操作
+        SearchResponse resp = client.search(req, RequestOptions.DEFAULT);
+
+        // 4. 输出结果
+        for (SearchHit hit : resp.getHits().getHits()) {
+            System.out.println(hit.getHighlightFields().get("smsContent"));
+
+        }
     }
 }
