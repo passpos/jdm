@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+ "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- 数据库方言 与 JDBC驱动 -->
+        <!--    MySQL
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3305/a01</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        -->
+
+        <!--    SQLite
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:d:/test.db</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.XXXXXXXXXX</property>
+        -->
+
+        <!-- MariaDB -->
+        <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3308/jdm_hibernate</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</property>
+
+        <!-- 数据库认证 -->
+        <property name="hibernate.connection.username">jdm</property>
+        <property name="hibernate.connection.password">jdmpw</property>
+
+        <!--是否将运行期生成的SQL输出到日志以供调试-->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <property name="hibernate.jdbc.fetch_size">20</property>
+        <property name="hibernate.jdbc.batch_size">20</property>
+
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!-- XML映射文件列表 -->
+        <mapping resource="hibernate/Employee.hbm.xml"/>
+        <mapping resource="hibernate/User.hbm.xml"/>
+        <mapping resource="hibernate/Pet.hbm.xml"/>
+        <mapping resource="hibernate/Role.hbm.xml"/>
+
+    </session-factory>
+</hibernate-configuration> 

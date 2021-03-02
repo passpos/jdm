@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"
+>
+
+<hibernate-mapping>
+    <class name="jdm.hibernate.entity.Husband" table="config_anthologies">
+        <meta attribute="class-description">丈夫</meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="gender" column="gender" type="boolean"/>
+        
+        <!--
+        主键关联：主键关联不需要额外的表字段；
+            如果两行是通过这种一对一关系相关联的，那么这两行就共享同样的主关键字值。
+            所以如果你希望两个对象通过主键一对一关联，你必须确认它们被赋予同样的标识值！ 
+        外键关联：数据表通过使用一个外键字段，来建立两个实体之间的关联；
+        一对一外键关联：Hibernate的一对一外键关联是通过“many-to-one”来设置的。
+            它还要求设置unique="true"，因为一对一时，本方实体只能被关联一次；
+        -->
+        <many-to-one name="wife" class="jdm.hibernate.entity.Wife" 
+                     column="wife_id" unique="true">
+        </many-to-one>
+    </class>
+</hibernate-mapping>
