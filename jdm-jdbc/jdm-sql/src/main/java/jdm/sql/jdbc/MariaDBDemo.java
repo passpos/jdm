@@ -99,7 +99,7 @@ public class MariaDBDemo {
                 o("ID: " + id);
                 o(", Age: " + age);
                 o(", First: " + first);
-                System.out.println(", Last: " + last);
+                o(", Last: " + last);
             }
             //STEP 5: 清理环境
         }
