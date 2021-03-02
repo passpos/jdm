@@ -23,8 +23,8 @@ public class MariaDBDemo {
     static final String JDBC_DRIVER_SQLITE = "org.sqlite.JDBC";
 
     // 数据库链接（java不识别大写的盘符“E:”）
-    static final String MySQL_URL = "jdbc:mysql://localhost:3308/a01";
-    static final String MariaDB_URL = "jdbc:mariadb://localhost:3308/a01";
+    static final String MYSQL_URL = "jdbc:mysql://localhost:3308/a01";
+    static final String MARIADB_URL = "jdbc:mariadb://localhost:3308/a01";
     static final String SQLITE_URL = "jdbc:sqlite://d:/tim.db";
 
     //  数据库认证信息
@@ -34,6 +34,12 @@ public class MariaDBDemo {
     // 用到的连接实例
     private Connection conn = null;
     private Statement stmt = null;
+
+    // SQL语句
+    private String sql1 = "INSERT INTO employees VALUES (100, 18, 'Zara', 'Ali')";
+    private String sql2 = "INSERT INTO employees VALUES (101, 25, 'Mahnaz', 'Fatma')";
+    private String sql3 = "INSERT INTO employees VALUES (102, 30, 'Zaid', 'Khan')";
+    private String sql4 = "INSERT INTO employees VALUES (103, 28, 'Sumit', 'Mittal')";
 
     public static void main(String[] args) {
         MariaDBDemo jdbcDemo = new MariaDBDemo();
@@ -47,7 +53,7 @@ public class MariaDBDemo {
 
             //STEP 2: 打开一个数据库连接
             System.out.println("正在连接到数据库...");
-            conn = DriverManager.getConnection(MySQL_URL, USER, PASS);
+            conn = DriverManager.getConnection(MYSQL_URL, USER, PASS);
 
             //STEP 3: 执行SQL语句（通过Connection实例）
             System.out.println("创建SQL语句...");
@@ -57,7 +63,7 @@ public class MariaDBDemo {
         } catch (SQLException | ClassNotFoundException se) {
             // 处理 JDBC 与 Class.forName 错误
             ol(se.getMessage());
-        }        finally {
+        } finally {
             //finally block used to close resources
             try {
                 if (stmt != null) {
@@ -73,17 +79,14 @@ public class MariaDBDemo {
     }
 
     public void execQuery() throws SQLException {
-        String sql1 = "INSERT INTO employees VALUES (100, 18, 'Zara', 'Ali')";
-        String sql2 = "INSERT INTO employees VALUES (101, 25, 'Mahnaz', 'Fatma')";
-        String sql3 = "INSERT INTO employees VALUES (102, 30, 'Zaid', 'Khan')";
-        String sql4 = "INSERT INTO employees VALUES (103, 28, 'Sumit', 'Mittal')";
+
         stmt.execute(sql1);
         stmt.execute(sql2);
         stmt.execute(sql3);
         stmt.execute(sql4);
 
         String sql5 = "SELECT id, first_name, last_name, age FROM employees";
-        try (ResultSet rs = stmt.executeQuery(sql5)) {
+        try ( ResultSet rs = stmt.executeQuery(sql5)) {
             //STEP 4: 从结果集展开数据
             while (rs.next()) {
                 // Retrieve by column name
