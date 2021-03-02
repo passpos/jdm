@@ -108,7 +108,7 @@ public class MariaDBDemo {
     }
 
     public static <T> void o(T arg) {
-        System.out.println(arg + "\t");
+        System.out.print(arg + "\t");
     }
 
     public static <T> void ol(T arg) {
