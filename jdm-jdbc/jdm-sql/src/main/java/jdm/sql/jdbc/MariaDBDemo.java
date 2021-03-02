@@ -23,7 +23,7 @@ public class MariaDBDemo {
     static final String JDBC_DRIVER_SQLITE = "org.sqlite.JDBC";
 
     // 数据库链接（java不识别大写的盘符“E:”）
-    static final String DB_URL = "jdbc:mysql://localhost:3308/a01";
+    static final String MySQL_URL = "jdbc:mysql://localhost:3308/a01";
     static final String MariaDB_URL = "jdbc:mariadb://localhost:3308/a01";
     static final String SQLITE_URL = "jdbc:sqlite://d:/tim.db";
 
@@ -47,7 +47,7 @@ public class MariaDBDemo {
 
             //STEP 2: 打开一个数据库连接
             System.out.println("正在连接到数据库...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(MySQL_URL, USER, PASS);
 
             //STEP 3: 执行SQL语句（通过Connection实例）
             System.out.println("创建SQL语句...");
