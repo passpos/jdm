@@ -25,4 +25,9 @@
     <property name="name" value="季芳"></property>
     <property name="age" value="22"></property>
   </bean>
+  <bean id="student2" class="jdm.spring.entity.Student">
+    <constructor-arg name="id" value="1"></constructor-arg>
+    <constructor-arg name="name" value="季芳"></constructor-arg>
+    <constructor-arg name="age" value="22"></constructor-arg>
+  </bean>
 </beans>

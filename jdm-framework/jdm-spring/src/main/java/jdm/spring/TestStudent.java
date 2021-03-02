@@ -31,8 +31,9 @@ public class TestStudent {
         ol(student);
     }
     
-    public void getBeanBy() {
-        
+    public void getBeanByConstructor() {
+        Student student = (Student) applicationContext.getBean("student2");
+        ol(student);
     }
 
     public <T> void ol(T arg) {
