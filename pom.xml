@@ -11,6 +11,7 @@
         <module>jdm-jdbc</module>
         <module>jdm-libs</module>
         <module>jdm-common</module>
+        <module>jdm-framework</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
