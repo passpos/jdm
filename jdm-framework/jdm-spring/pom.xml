@@ -3,11 +3,24 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.passpos</groupId>
-        <artifactId>JDM</artifactId>
+        <artifactId>jdm-framework</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>jdm-spring</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
