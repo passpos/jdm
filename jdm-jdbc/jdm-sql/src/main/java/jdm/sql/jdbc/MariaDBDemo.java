@@ -56,7 +56,7 @@ public class MariaDBDemo {
             conn = DriverManager.getConnection(MYSQL_URL, USER, PASS);
 
             //STEP 3: 执行SQL语句（通过Connection实例）
-            System.out.println("创建SQL语句...");
+            ol("创建SQL语句...");
             stmt = conn.createStatement();
 
             execQuery();
@@ -75,7 +75,7 @@ public class MariaDBDemo {
             } catch (SQLException se2) {
             }
         }
-        System.out.println("再见！");
+        ol("再见！");
     }
 
     public void execQuery() throws SQLException {
