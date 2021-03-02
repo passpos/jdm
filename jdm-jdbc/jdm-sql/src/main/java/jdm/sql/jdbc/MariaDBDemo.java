@@ -24,7 +24,7 @@ public class MariaDBDemo {
 
     // 数据库链接（java不识别大写的盘符“E:”）
     static final String MYSQL_URL = "jdbc:mysql://localhost:3308/a01";
-    static final String MARIADB_URL = "jdbc:mariadb://localhost:3308/a01";
+    static final String MARIADB_URL = "jdbc:mariadb://localhost:3308/jdm_jdbc";
     static final String SQLITE_URL = "jdbc:sqlite://d:/tim.db";
 
     //  数据库认证信息
