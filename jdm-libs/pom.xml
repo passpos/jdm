@@ -12,5 +12,6 @@
     <module>jdm-log4j</module>
     <module>jdm-junit</module>
     <module>jdm-jsoup</module>
+    <module>jdm-elasticsearch</module>
   </modules>
 </project>
