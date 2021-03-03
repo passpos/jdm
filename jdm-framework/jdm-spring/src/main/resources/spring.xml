@@ -30,4 +30,10 @@
     <constructor-arg name="name" value="季芳"></constructor-arg>
     <constructor-arg name="age" value="22"></constructor-arg>
   </bean>
+  
+  <!--自动扫描-->
+  <context:component-scan base-package="jdm"></context:component-scan>
+
+  <!-- 使Aspect注解生效，为目标类自动生成代理对象 -->
+  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>

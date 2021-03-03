@@ -8,6 +8,7 @@ package jdm.spring.entity;
 import jdm.spring.aop.CalImpl;
 import jdm.spring.aop.Calcuator;
 import jdm.spring.aop.MyInvocationHandler;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,6 +16,11 @@ import org.junit.jupiter.api.Test;
  * @author passpos <paiap@outlook.com>
  */
 public class InvocationTest {
+
+    @BeforeEach
+    public void before() {
+        System.out.println("-------------------------");
+    }
 
     @Test
     public void testCal() {
