@@ -11,6 +11,7 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 /**
+ * 动态代理实现AOP；
  *
  * @author passpos <paiap@outlook.com>
  */
@@ -23,6 +24,7 @@ public class MyInvocationHandler implements InvocationHandler {
 
     /**
      * 返回代理对象
+     *
      * @param object
      * @return
      */
