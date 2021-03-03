@@ -6,6 +6,7 @@
 package jdm.spring.entity;
 
 import jdm.spring.aop.CalImpl;
+import jdm.spring.aop.Calcuator;
 import jdm.spring.aop.MyInvocationHandler;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +20,11 @@ public class InvocationTest {
     public void testCal() {
         CalImpl calImpl = new CalImpl();
         MyInvocationHandler handler = new MyInvocationHandler();
-        handler.bind(calImpl);
-        calImpl.add(1, 1);
-        calImpl.sub(2, 1);
-        calImpl.mul(2, 3);
-        calImpl.div(10, 2);
+        Calcuator cal2 = (Calcuator) handler.bind(calImpl);
+        cal2.add(1, 1);
+        cal2.sub(2, 1);
+        cal2.mul(2, 3);
+        cal2.div(10, 2);
 
     }
 }
