@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class MyInvocationHandler implements InvocationHandler {
 
     /**
-     * 接收委托对象
+     * 接收委托对象（源对象）
      */
     private Object object = null;
 
@@ -39,7 +39,7 @@ public class MyInvocationHandler implements InvocationHandler {
         System.out.println(method.getName() + "方法的参数是：" + Arrays.toString(args));
         Object result = method.invoke(object, args);
         System.out.println(method.getName() + "的结果是：" + result);
-        return null;
+        return result;
     }
 
 }
