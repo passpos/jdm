@@ -25,7 +25,11 @@ public class TestStudent {
         Student student = (Student) applicationContext.getBean("student");
         ol(student);
     }
-    
+
+    /**
+     * 这种方式存在一个问题，配置文件中一个数据类型的对象只能有一个实例例，否则
+     * 会抛出异常，因为没有唯一的 bean。
+     */
     public void getBeanByRuntimeClass() {
         Student student = applicationContext.getBean(Student.class);
         ol(student);
