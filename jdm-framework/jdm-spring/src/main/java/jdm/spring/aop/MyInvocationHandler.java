@@ -38,7 +38,7 @@ public class MyInvocationHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println(method.getName() + "方法的参数是：" + Arrays.toString(args));
 
-        // 调用源对象，执行源方法
+        // 调用委托对象，执行源方法
         Object result = method.invoke(object, args);
 
         System.out.println(method.getName() + "的结果是：" + result);
