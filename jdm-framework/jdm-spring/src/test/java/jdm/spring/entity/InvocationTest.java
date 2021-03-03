@@ -19,8 +19,10 @@ public class InvocationTest {
     @Test
     public void testCal() {
         CalImpl calImpl = new CalImpl();
+
         MyInvocationHandler handler = new MyInvocationHandler();
         Calcuator cal2 = (Calcuator) handler.bind(calImpl);
+
         cal2.add(1, 1);
         cal2.sub(2, 1);
         cal2.mul(2, 3);
