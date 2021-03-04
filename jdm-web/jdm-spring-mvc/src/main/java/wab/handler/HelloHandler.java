@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import wab.entity.User;
 
 /**
+ * 使用“@ResponseBody”或使用“@RESTController”注解，就可以省去控制器中所有
+ * 方法前的“@ResponseBody”注解；
+ *
  *
  * @author passpos <paiap@outlook.com>
  */
