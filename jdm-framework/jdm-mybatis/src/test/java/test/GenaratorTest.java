@@ -27,7 +27,7 @@ public class GenaratorTest {
 
     public void generator() {
         // 加载配置
-        String genConf = "mybatis/generator.xml";
+        String genConf = "generator.xml";
         File conf = new File(UserDaoTest.class.getClassLoader().getResource(genConf).getFile());
 
         ArrayList<String> warnings = new ArrayList<>();

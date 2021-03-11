@@ -39,7 +39,7 @@ public class UserDaoTest {
 
     private void init() {
         // 加载MyBatis配置文件
-        InputStream istream = UserDaoTest.class.getClassLoader().getResourceAsStream("mybatis/config.xml");
+        InputStream istream = UserDaoTest.class.getClassLoader().getResourceAsStream("config/mybatis.xml");
         if (istream == null) {
             ol("找不到配置文件！");
             return;
