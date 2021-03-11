@@ -158,9 +158,12 @@ public class UserDaoTest {
         ol(pet);
     }
 
-    public void findPets() {
+    @Test
+    public void testFindPets() {
         User user = urp.findPets(4);
-        ol(user);
+        for (Pet pet : user.getMyPets()) {
+            ol(pet.getClass());
+        }
     }
 
     @Test
