@@ -106,11 +106,13 @@ public class UserDaoTest {
         ol(deleteCount);
     }
 
-    public void findAll() {
+    @Test
+    public void testFindAll() {
         List<User> users = urp.findAll();
         ol(users);
         for (User user : users) {
             ol(user);
+            ol(user.getClass());
         }
     }
 
