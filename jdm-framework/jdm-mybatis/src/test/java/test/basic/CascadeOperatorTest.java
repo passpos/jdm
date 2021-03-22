@@ -30,10 +30,10 @@ public class CascadeOperatorTest extends BasicTest {
 
     @Override
     public void init() {
-        urp = getSqlSession().getMapper(UserDao.class);
-        prp = getSqlSession().getMapper(PetDao.class);
-        rrp = getSqlSession().getMapper(RoleDao.class);
-        wrp = getSqlSession().getMapper(WifeDao.class);
+        urp = getDao(UserDao.class);
+        prp = getDao(PetDao.class);
+        rrp = getDao(RoleDao.class);
+        wrp = getDao(WifeDao.class);
     }
 
     /* -------------------------------------------------------------------------
