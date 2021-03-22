@@ -43,13 +43,13 @@ public class UserDaoTest extends BasicTest {
         if (user != null) {
             user.setUserName("老猫");
             urp.update(user);
-            sqlSession.commit();
+            commit();
         }
     }
 
     public void deleteByAge() {
         int deleteCount = urp.deleteByAge(6);
-        sqlSession.commit();
+        commit();
         ol(deleteCount);
     }
 
