@@ -67,8 +67,8 @@ public abstract class BasicTest {
         return sqlSession;
     }
 
-    public <T> T getDao(Class<T> type) {
-        T mapper = sqlSession.getMapper(type);
+    public <T> T getDao(Class<T> daoClass) {
+        T mapper = sqlSession.getMapper(daoClass);
         return mapper;
     }
 }
