@@ -13,7 +13,9 @@ import test.BasicTest;
 /**
  * 原生接口
  *
- * 原生接口指：直接使用 SqlSession 进行增、删、改、查的操作；
+ * 指直接使用由用户提供的SQL语句，并通过 SqlSession 进行增、删、改、查的操作；
+ * 这种方式将SQL语句直接嵌套进入代码中，排错困难。由于SQL语句被写死了，所以十分
+ * 不灵活，
  *
  * @author passpos <paiap@outlook.com>
  */
