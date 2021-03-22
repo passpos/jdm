@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package test.advance;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +17,7 @@ import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import test.basic.UserDaoTest;
 
 /**
  * 逆向工程
@@ -46,22 +47,22 @@ public class GenaratorTest {
 
         // 为注册对象生成回调；
         boolean overwrite = true;
-        DefaultShellCallback dsc = new DefaultShellCallback(overwrite);
+        DefaultShellCallback dsCallback = new DefaultShellCallback(overwrite);
 
         // 生成注册对象
-        MyBatisGenerator mbg = null;
+        MyBatisGenerator mbGenerator = null;
         try {
-            mbg = new MyBatisGenerator(config, dsc, warnings);
+            mbGenerator = new MyBatisGenerator(config, dsCallback, warnings);
         } catch (InvalidConfigurationException ex) {
             Logger.getLogger(UserDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (mbg == null) {
+        if (mbGenerator == null) {
             return;
         }
 
         // 执行注册
         try {
-            mbg.generate(null);
+            mbGenerator.generate(null);
         } catch (SQLException | IOException | InterruptedException ex) {
             Logger.getLogger(UserDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }

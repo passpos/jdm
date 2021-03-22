@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package test.basic;
 
 import java.util.List;
 import jdm.mybatis.dao.PetDao;
@@ -11,6 +11,7 @@ import jdm.mybatis.dao.UserDao;
 import jdm.mybatis.entity.Pet;
 import jdm.mybatis.entity.User;
 import org.junit.jupiter.api.Test;
+import test.BasicTest;
 
 /**
  *

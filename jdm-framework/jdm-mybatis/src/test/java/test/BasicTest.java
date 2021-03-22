@@ -5,29 +5,22 @@
  */
 package test;
 
+import test.basic.UserDaoTest;
 import java.io.InputStream;
-import jdm.mybatis.entity.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 
 /**
- * 原生接口
  *
  * @author passpos <paiap@outlook.com>
  */
-public class NativeInterfaceTest {
-
+public abstract class BasicTest {
+    
     private SqlSession sqlSession;
-
-    public NativeInterfaceTest() {
-        init();
-    }
-
-    private void init() {
+    
+    public BasicTest() {
         // 加载MyBatis配置文件
         InputStream istream = UserDaoTest.class.getClassLoader().getResourceAsStream("config/mybatis.xml");
         if (istream == null) {
@@ -49,9 +42,15 @@ public class NativeInterfaceTest {
         if (sqlSession == null) {
             ol("获取SqlSession实例失败！");
         }
-
+        init();
     }
-
+    
+    public abstract void init();
+    
+    public void commit() {
+        sqlSession.commit();
+    }
+    
     @AfterAll
     public void close() {
         // 关闭连接
@@ -59,24 +58,13 @@ public class NativeInterfaceTest {
             sqlSession.close();
         }
     }
-
-    public <T> void ol(T arg) {
+    
+    public final <T> void ol(T arg) {
         System.out.println(arg);
     }
-
-    @Disabled
-    public void addUser() {
-        String statement = "jdm.mybatis.repository.UserMapper.save";
-        User user = new User("second", 20);
-        sqlSession.insert(statement, user);
-        sqlSession.commit();
+    
+    public SqlSession getSqlSession() {
+        return sqlSession;
     }
-
-    @Test
-    public void testFindByAge() {
-        String statement = "jdm.mybatis.repository.UserMapper.findByAge";
-        Integer age = 18;
-        User user = sqlSession.selectOne(statement, age);
-        ol(user);
-    }
+    
 }
