@@ -5,12 +5,12 @@
  */
 package test;
 
-import test.basic.UserDaoTest;
 import java.io.InputStream;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.AfterAll;
+import test.basic.UserDaoTest;
 
 /**
  *
@@ -66,5 +66,9 @@ public abstract class BasicTest {
     public SqlSession getSqlSession() {
         return sqlSession;
     }
-    
+
+    public <T> T getDao(Class<T> type) {
+        T mapper = sqlSession.getMapper(type);
+        return mapper;
+    }
 }
