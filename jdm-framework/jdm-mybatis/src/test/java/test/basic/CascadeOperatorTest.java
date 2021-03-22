@@ -57,7 +57,7 @@ public class CascadeOperatorTest extends BasicTest {
     public void testFindPets() {
         User user = urp.findPets(4);
         for (Pet pet : user.getMyPets()) {
-            ol(pet.getClass());
+            ol(pet);
         }
     }
 
@@ -65,7 +65,7 @@ public class CascadeOperatorTest extends BasicTest {
     public void testFindRoles() {
         User user = urp.findRoles(9);
         for (Role myRole : user.getMyRoles()) {
-            ol(myRole.getClass());
+            ol(myRole);
         }
         ol(user);
     }
