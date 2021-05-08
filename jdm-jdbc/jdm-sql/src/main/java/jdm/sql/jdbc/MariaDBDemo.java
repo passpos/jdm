@@ -23,23 +23,23 @@ public class MariaDBDemo {
     static final String JDBC_DRIVER_SQLITE = "org.sqlite.JDBC";
 
     // 数据库链接（java不识别大写的盘符“E:”）
-    static final String MYSQL_URL = "jdbc:mysql://localhost:3308/a01";
-    static final String MARIADB_URL = "jdbc:mariadb://localhost:3308/jdm_jdbc";
+    static final String MYSQL_URL = "jdbc:mysql://localhost:3310/jdm_jdbc";
+    static final String MARIADB_URL = "jdbc:mariadb://localhost:3310/jdm_jdbc";
     static final String SQLITE_URL = "jdbc:sqlite://d:/tim.db";
 
     //  数据库认证信息
-    static final String USER = "a01";
-    static final String PASS = "a01";
+    static final String USER = "jdm";
+    static final String PASS = "jdmpw";
 
     // 用到的连接实例
     private Connection conn = null;
     private Statement stmt = null;
 
-    // SQL语句
-    private String sql1 = "INSERT INTO employees VALUES (100, 18, 'Zara', 'Ali')";
-    private String sql2 = "INSERT INTO employees VALUES (101, 25, 'Mahnaz', 'Fatma')";
-    private String sql3 = "INSERT INTO employees VALUES (102, 30, 'Zaid', 'Khan')";
-    private String sql4 = "INSERT INTO employees VALUES (103, 28, 'Sumit', 'Mittal')";
+    // SQL语句（字段顺序应与数据表中顺序一致）
+    private String sql1 = "INSERT INTO employees VALUES (100, 'Zara', 'Ali', 18)";
+    private String sql2 = "INSERT INTO employees VALUES (101, 'Mahnaz', 'Fatma', 25)";
+    private String sql3 = "INSERT INTO employees VALUES (102, 'Zaid', 'Khan', 30)";
+    private String sql4 = "INSERT INTO employees VALUES (103, 'Sumit', 'Mittal', 28)";
 
     public static void main(String[] args) {
         MariaDBDemo jdbcDemo = new MariaDBDemo();
@@ -96,7 +96,7 @@ public class MariaDBDemo {
                 String last = rs.getString("last_name");
 
                 // 展示数值
-                o("ID: " + id);
+                o("\nID: " + id);
                 o(", Age: " + age);
                 o(", First: " + first);
                 o(", Last: " + last);
