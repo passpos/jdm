@@ -52,7 +52,7 @@
             <!--POOLED配置JDBC数据源连接池-->
             <dataSource type="POOLED">
                 <property name="driver" value="org.mariadb.jdbc.Driver"/>
-                <property name="url" value="jdbc:mariadb://localhost:3308/jdm_mybatis"/>
+                <property name="url" value="jdbc:mariadb://localhost:3310/jdm_mybatis"/>
                 <property name="username" value="jdm"/>
                 <property name="password" value="jdmpw"/>
             </dataSource>
@@ -63,7 +63,7 @@
             <!--POOLED配置JDBC数据源连接池-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3305/jdm_mybatis?useUnicode=true&amp;charcaterEncoding=UTF-8"/>
+                <property name="url" value="jdbc:mysql://localhost:3310/jdm_mybatis?useUnicode=true&amp;charcaterEncoding=UTF-8"/>
                 <property name="username" value="jdm"/>
                 <property name="password" value="jdmpw"/>
             </dataSource>
