@@ -51,6 +51,7 @@ public class ESDocTest {
         System.out.println("testUpdateDoc() - " + update.getResult().toString());
     }
 
+    @Test
     public void testCreateDoc() throws JsonProcessingException, IOException {
         // 1. 准备一个json数据
         Person person = new Person(3, "童柏雄", 39, new Date());
