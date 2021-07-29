@@ -8,9 +8,5 @@
     </parent>
     <artifactId>jdm-base-net</artifactId>
     <packaging>jar</packaging>
-    <properties>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
-    </properties>
     <name>jdm-base-net</name>
 </project>
