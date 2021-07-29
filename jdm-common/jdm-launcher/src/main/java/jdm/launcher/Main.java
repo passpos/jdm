@@ -29,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) {
         ConsumerDemo demo = new ConsumerDemo();
-        demo.show();
+        // demo.show();
     }
 
 }

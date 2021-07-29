@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>jdm-core</module>
-        <module>jdm-samples</module>
         <module>jdm-launcher</module>
     </modules>
 </project>
