@@ -37,6 +37,7 @@ import structural.bridge.RedCircle;
 import structural.composite.Composite;
 import structural.decorator.AbstractDecorator;
 import structural.decorator.RedShapeDecorator;
+import structural.facade.Facade;
 import structural.filter.AndCriteria;
 import structural.filter.CriteriaFemale;
 import structural.filter.CriteriaInterface;
@@ -368,6 +369,8 @@ public class PatternTest {
     // 装饰器模式
     @Test
     public void testDecorator() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Decorator|装饰器模式");
         // 装饰前
         System.out.println("Circle with normal border");
         ShapeInterface c1 = new creational.factory.shape.CircleShape();
@@ -384,6 +387,19 @@ public class PatternTest {
         AbstractDecorator redRectangle = new RedShapeDecorator(new RectangleShape());
         redRectangle.draw();
     }
+
+    // 外观模式
+    @Test
+    public void testFacade() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Facade|外观模式");
+        Facade shapeMaker = new Facade();
+
+        shapeMaker.drawCircle();
+        shapeMaker.drawRectangle();
+        shapeMaker.drawSquare();
+    }
+
     /* -------------------------------------------------------------------------
      * 行为型
      * ---------------------------------------------------------------------- */
