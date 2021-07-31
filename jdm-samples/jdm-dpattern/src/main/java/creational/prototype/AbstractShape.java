@@ -97,17 +97,4 @@ public abstract class AbstractShape implements Cloneable {
         return clone;
     }
 
-    // 一般放置在应用类中
-    public static void main(String[] args) {
-        ShapeCache.loadCache();
-
-        AbstractShape s1 = ShapeCache.getShape("1");
-        System.out.println("形状 : " + s1.getType());
-
-        AbstractShape s2 = ShapeCache.getShape("2");
-        System.out.println("形状 : " + s2.getType());
-
-        AbstractShape s3 = ShapeCache.getShape("3");
-        System.out.println("形状 : " + s3.getType());
-    }
 }

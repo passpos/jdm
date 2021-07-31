@@ -14,6 +14,7 @@ import creational.builder.drink.PepsiDrink;
  * 建造者模式
  *
  * 建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。
+ * 建造者模式不仅会抽象出用于建造对象的组件，还会抽象出建造的方法（为接口）；
  * 这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
  *
  * 一个 Builder 类会一步一步构造最终的对象。该 Builder 类是独立于其他对象的。
@@ -58,21 +59,6 @@ import creational.builder.drink.PepsiDrink;
  */
 public class Builder {
 
-    // 该方法一般存放在应用类中
-    public static void useBuilder() {
-        Builder builder = new Builder();
-
-        AMeal vegMeal = builder.prepareVegMeal();
-        System.out.println("素餐");
-        vegMeal.showItems();
-        System.out.println("总金额：" + vegMeal.getCost());
-
-        AMeal nonVegMeal = builder.prepareNonVegMeal();
-        System.out.println("\n\n非素");
-        nonVegMeal.showItems();
-        System.out.println("总金额：" + nonVegMeal.getCost());
-    }
-
     public AMeal prepareVegMeal() {
         AMeal meal = new AMeal();
         meal.addItem(new VegBurgerItem());
@@ -87,7 +73,4 @@ public class Builder {
         return meal;
     }
 
-    public static void main(String[] args) {
-        useBuilder();
-    }
 }

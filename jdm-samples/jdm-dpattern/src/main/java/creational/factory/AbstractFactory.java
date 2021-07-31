@@ -5,9 +5,7 @@
  */
 package creational.factory;
 
-import creational.factory.color.ColorFactory;
 import creational.factory.color.ColorInterface;
-import creational.factory.shape.ShapeFactory;
 import creational.factory.shape.ShapeInterface;
 
 /**
@@ -68,25 +66,4 @@ public abstract class AbstractFactory {
 
     public abstract ShapeInterface getShape(String shape);
 
-    // 该方法一般位于 应用类 中；
-    public AbstractFactory getFactory(String choice) {
-        if (choice.equalsIgnoreCase("SHAPE")) {
-            return new ShapeFactory();
-        } else if (choice.equalsIgnoreCase("COLOR")) {
-            return new ColorFactory();
-        } else {
-            return null;
-        }
-    }
-
-    // 该方法一般位于 应用类 中；
-    public String getColorShape(String colorStr, String shapeStr) {
-        AbstractFactory colorFactory = getFactory("COLOR");
-        AbstractFactory shapeFactory = getFactory("SHAPE");
-
-        ColorInterface color = colorFactory.getColor(colorStr);
-        ShapeInterface shape = shapeFactory.getShape(shapeStr);
-
-        return color.fill() + " - " + shape.draw();
-    }
 }

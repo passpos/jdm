@@ -86,20 +86,4 @@ public class ShapeFactory extends AbstractFactory {
         return null;
     }
 
-    // 使用工厂类（该方法一般写在其他应用类中）
-    public void startFactory() {
-        ShapeFactory shapeFactory = new ShapeFactory();
-
-        //获取 CircleShape 的对象，并调用它的 draw 方法
-        ShapeInterface shape1 = shapeFactory.getShape("CIRCLE");
-        shape1.draw();
-
-        //获取 RectangleShape 的对象，并调用它的 draw 方法
-        ShapeInterface shape2 = shapeFactory.getShape("RECTANGLE");
-        shape2.draw();
-
-        //获取 SquareShape 的对象，并调用它的 draw 方法
-        ShapeInterface shape3 = shapeFactory.getShape("SQUARE");
-        shape3.draw();
-    }
 }
