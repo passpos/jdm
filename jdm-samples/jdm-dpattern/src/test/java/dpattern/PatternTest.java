@@ -368,15 +368,18 @@ public class PatternTest {
     // 装饰器模式
     @Test
     public void testDecorator() {
+        // 装饰前
         System.out.println("Circle with normal border");
         ShapeInterface c1 = new creational.factory.shape.CircleShape();
         c1.draw();
 
+        // 装饰后
         System.out.println("\nCircle of red border");
         ShapeInterface c2 = new creational.factory.shape.CircleShape();
         AbstractDecorator redCircle = new RedShapeDecorator(c2);
         redCircle.draw();
 
+        // 装饰后
         System.out.println("\nRectangle of red border");
         AbstractDecorator redRectangle = new RedShapeDecorator(new RectangleShape());
         redRectangle.draw();
