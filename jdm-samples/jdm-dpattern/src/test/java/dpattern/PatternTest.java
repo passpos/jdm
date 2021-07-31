@@ -45,6 +45,8 @@ import structural.filter.CriteriaMale;
 import structural.filter.CriteriaSingle;
 import structural.filter.OrCriteria;
 import structural.filter.Person;
+import structural.flyweight.Flyweight;
+import structural.proxy.Proxy;
 
 /**
  * 1.创建型模式
@@ -83,11 +85,19 @@ import structural.filter.Person;
  * structural.filter.CriteriaInterface
  *
  * 组合模式（Composite Pattern）
- * 装饰器模式（Decorator Pattern）
- * 外观模式（Facade Pattern）
- * 享元模式（Flyweight Pattern）
- * 代理模式（Proxy Pattern）
+ * structural.composite.Composite
  *
+ * 装饰器模式（Decorator Pattern）
+ * structural.decorator.AbstractDecorator
+ *
+ * 外观模式（Facade Pattern）
+ * structural.facade.Facade
+ *
+ * 享元模式（Flyweight Pattern）
+ * structural.flyweight.Flyweight
+ *
+ * 代理模式（Proxy Pattern）
+ * structural.proxy.Proxy
  *
  * 3.行为型模式
  * 这些设计模式特别关注对象之间的通信。
@@ -398,6 +408,29 @@ public class PatternTest {
         shapeMaker.drawCircle();
         shapeMaker.drawRectangle();
         shapeMaker.drawSquare();
+    }
+
+    // 外观模式
+    @Test
+    public void testFlyweight() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Flyweight|外观模式");
+        Flyweight.start();
+    }
+
+    // 代理模式
+    @Test
+    public void testProxy() {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Proxy|代理模式");
+        Proxy proxy = new Proxy("test_10mb.jpg");
+
+        // 图像将从磁盘加载
+        proxy.display();
+        System.out.println("");
+
+        // 图像不需要从磁盘加载
+        proxy.display();
     }
 
     /* -------------------------------------------------------------------------
