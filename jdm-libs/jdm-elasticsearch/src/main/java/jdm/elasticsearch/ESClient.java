@@ -22,7 +22,7 @@ public class ESClient {
 
     public static RestHighLevelClient getClient() {
         // 目标主机
-        HttpHost httpHost = new HttpHost("127.0.0.1", 9602);
+        HttpHost httpHost = new HttpHost("127.0.0.1", 9611);
 
         RestClientBuilder rcb = RestClient.builder(httpHost);
 
