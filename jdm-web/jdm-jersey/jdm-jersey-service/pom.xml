@@ -9,6 +9,18 @@
   <artifactId>jdm-jersey-service</artifactId>
   <packaging>war</packaging>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-multipart</artifactId>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.ext</groupId>
+      <artifactId>jersey-bean-validation</artifactId>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>
