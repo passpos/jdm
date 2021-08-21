@@ -37,4 +37,7 @@ public class MyResourceConfig extends ResourceConfig {
         // 数据库
     }
 
+    public static <T> void ol(T t) {
+        System.out.println(t);
+    }
 }

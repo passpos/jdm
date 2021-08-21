@@ -10,15 +10,20 @@
   <packaging>war</packaging>
 
   <dependencies>
+    <!--Json转换-->
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-json-binding</artifactId>
+    </dependency>
+    <!--上传表单-->
     <dependency>
       <groupId>org.glassfish.jersey.media</groupId>
       <artifactId>jersey-media-multipart</artifactId>
-      <type>jar</type>
     </dependency>
+    <!--Bean验证-->
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
       <artifactId>jersey-bean-validation</artifactId>
-      <type>jar</type>
     </dependency>
   </dependencies>
   <build>
