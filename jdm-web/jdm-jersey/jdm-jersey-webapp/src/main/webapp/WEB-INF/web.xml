@@ -10,6 +10,7 @@ see implementation details http://jersey.java.net/nonav/documentation/latest/jax
     <servlet-name>Jersey Web Application</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
+      <!--资源目录-->
       <param-name>jersey.config.server.provider.packages</param-name>
       <param-value>com.example</param-value>
     </init-param>
@@ -17,6 +18,7 @@ see implementation details http://jersey.java.net/nonav/documentation/latest/jax
   </servlet>
 
   <servlet-mapping>
+    <!--应用路径（前缀）-->
     <servlet-name>Jersey Web Application</servlet-name>
     <url-pattern>/webapi/*</url-pattern>
   </servlet-mapping>
