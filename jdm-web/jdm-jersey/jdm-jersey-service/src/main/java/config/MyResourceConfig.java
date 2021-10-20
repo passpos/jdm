@@ -13,6 +13,8 @@ import org.glassfish.jersey.server.filter.UriConnegFilter;
 /**
  * 项目的资源配置
  *
+ * ApplicationPath不能省略；
+ *
  * @author passpos <paiap@outlook.com>
  */
 @ApplicationPath("api")

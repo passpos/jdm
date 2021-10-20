@@ -12,11 +12,12 @@
     <module>jdm-jersey-server</module>
     <module>jdm-jersey-webapp</module>
     <module>jdm-jersey-service</module>
+    <module>jdm-jersey-mvc</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>16</maven.compiler.source>
-    <maven.compiler.target>16</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <jersey.version>3.0.2</jersey.version>
   </properties>
 
